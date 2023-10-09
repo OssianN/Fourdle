@@ -1,0 +1,43 @@
+.keyboardContainer {
+  position: relative;
+  padding: 2rem;
+}
+
+.keyboardRow {
+  display: flex;
+  gap: 3px;
+  margin: 3px 0;
+}
+
+.key {
+  position: relative;
+  padding: 0.5rem;
+  border: 1px solid var(--main-light-green);
+  border-radius: 0.25rem;
+  color: white;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .keyboardRow {
+    gap: 5px;
+    margin: 5px 0;
+  }
+
+  .key {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .keyboardRow:nth-child(2) {
+    transform: translateX(1rem);
+  }
+
+  .keyboardRow:nth-child(3) {
+    transform: translateX(2rem);
+  }
+}
