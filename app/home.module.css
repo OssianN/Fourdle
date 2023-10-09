@@ -1,0 +1,21 @@
+.main {
+  max-width: var(--max-width);
+  padding: 1rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  font-size: var(--main-h1-size);
+  font-weight: 900;
+  color: var(--main-light-green);
+}
+
+@media (min-width: 414px) {
+  .main {
+    padding: 2rem;
+  }
+}
