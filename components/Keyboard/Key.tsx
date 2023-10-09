@@ -13,20 +13,22 @@ export const Key = ({ letter, color }: { letter: string; color: string }) => {
     target,
   }: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     window.dispatchEvent(
-      new KeyboardEvent('keydown', { key: (target as HTMLElement).innerHTML })
+      new KeyboardEvent('keydown', { key: (target as HTMLButtonElement).name })
     )
   }
 
   return (
     <button
+      name={letter}
       onClick={handleClick}
       className={styles.key}
       style={{
         background: colorMap[color],
         width: letter === 'Enter' ? 'var(--big-key-size)' : 'var(--key-size)',
+        flex: letter === 'Enter' ? 'unset' : '',
       }}
     >
-      {letter}
+      {letter === 'Backspace' ? '⌫' : letter}
     </button>
   )
 }

@@ -5,17 +5,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
 }
 
 .title {
+  padding-top: 1rem;
   text-align: center;
   font-size: var(--main-h1-size);
   font-weight: 900;
   color: var(--main-light-green);
 }
 
-@media (min-width: 414px) {
+@media (min-width: 768px) {
   .main {
     padding: 2rem;
+    gap: 2rem;
   }
 }

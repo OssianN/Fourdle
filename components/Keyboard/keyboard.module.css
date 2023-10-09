@@ -1,6 +1,5 @@
 .keyboardContainer {
   position: relative;
-  padding: 2rem 0;
 }
 
 .keyboardRow {
@@ -11,13 +10,14 @@
 
 .key {
   --key-size: unset;
-  --big-key-size: 6rem;
+  --big-key-size: 4rem;
 
   position: relative;
   padding: 0.5rem;
   border: 1px solid var(--main-light-green);
   border-radius: 0.25rem;
   color: white;
+  font-size: 1rem;
   flex: 1;
   min-width: fit-content;
   height: var(--key-size);
@@ -37,6 +37,7 @@
 
   .key {
     --key-size: 3rem;
+    --big-key-size: 6rem;
     flex: unset;
   }
 
