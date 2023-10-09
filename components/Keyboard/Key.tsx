@@ -21,7 +21,10 @@ export const Key = ({ letter, color }: { letter: string; color: string }) => {
     <button
       onClick={handleClick}
       className={styles.key}
-      style={{ background: colorMap[color] }}
+      style={{
+        background: colorMap[color],
+        width: letter === 'Enter' ? 'var(--big-key-size)' : 'var(--key-size)',
+      }}
     >
       {letter}
     </button>

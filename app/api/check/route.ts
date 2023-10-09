@@ -12,7 +12,6 @@ export async function POST(req: Request) {
 
   const data: string[] = await response.json()
   const result = data.map((color, i) => ({ color, letter: body.word[i] }))
-  console.log(result)
 
   return NextResponse.json(result)
 }

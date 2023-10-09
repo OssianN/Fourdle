@@ -1,6 +1,6 @@
 .keyboardContainer {
   position: relative;
-  padding: 2rem;
+  padding: 2rem 0;
 }
 
 .keyboardRow {
@@ -10,16 +10,23 @@
 }
 
 .key {
+  --key-size: unset;
+  --big-key-size: 6rem;
+
   position: relative;
   padding: 0.5rem;
   border: 1px solid var(--main-light-green);
   border-radius: 0.25rem;
   color: white;
   flex: 1;
+  min-width: fit-content;
+  height: var(--key-size);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: 0.2s;
+  transition-delay: 0.8s;
 }
 
 @media (min-width: 768px) {
@@ -29,15 +36,11 @@
   }
 
   .key {
-    width: 3rem;
-    height: 3rem;
+    --key-size: 3rem;
+    flex: unset;
   }
 
   .keyboardRow:nth-child(2) {
     transform: translateX(1rem);
-  }
-
-  .keyboardRow:nth-child(3) {
-    transform: translateX(2rem);
   }
 }
