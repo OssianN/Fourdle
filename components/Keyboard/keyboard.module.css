@@ -1,5 +1,6 @@
 .keyboardContainer {
   position: relative;
+  width: 100%;
 }
 
 .keyboardRow {
@@ -13,7 +14,7 @@
   --big-key-size: 4rem;
 
   position: relative;
-  padding: 0.5rem;
+  padding: 0.25rem;
   border: 1px solid var(--main-light-green);
   border-radius: 0.25rem;
   color: white;
@@ -29,7 +30,17 @@
   transition-delay: 0.8s;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 330px) {
+  .key {
+    padding: 0.5rem;
+  }
+}
+
+@media (min-width: 600px) {
+  .keyboardContainer {
+    width: unset;
+  }
+
   .keyboardRow {
     gap: 5px;
     margin: 5px 0;
