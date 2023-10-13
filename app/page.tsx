@@ -1,14 +1,25 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Board } from '@/components/GameBoard/Board'
 import KeybaordContainer from '@/components/Keyboard/KeyboardContainer'
 import { Result } from '@/types'
 import { addKey, checkResult } from '@/utils/BoardUtils'
 import styles from './home.module.css'
+import { useStateWithLocalStorage } from '@/utils/useStateWithLocalStorage'
+
+type UserData = {
+  rows: string[][]
+  result: Result[][]
+}
 
 export default function Home() {
-  const [rows, setRows] = useState<string[][]>([[]])
-  const [result, setResult] = useState<Result[][]>([])
+  const {
+    state: { rows, result },
+    setState: setUserData,
+  } = useStateWithLocalStorage<UserData>({
+    key: 'userData',
+    initialState: { rows: [[]], result: [] },
+  })
   const currentIndex = rows.length - 1
 
   useEffect(() => {
@@ -20,20 +31,28 @@ export default function Home() {
 
       if (e.key === 'Enter') {
         const newResultRow = await checkResult(rows, currentIndex)
-        setResult([...result, newResultRow])
-        setRows([...rows, []])
+        setUserData({
+          result: [...result, newResultRow],
+          rows: [...rows, []],
+        })
         return
       }
 
       if (e.key === 'Backspace') {
         rows[currentIndex].pop()
-        setRows([...rows])
+        setUserData(prev => ({
+          ...prev,
+          rows: [...rows],
+        }))
         return
       }
 
       if (rows[currentIndex].length < 4) {
         const newRow = addKey(rows, currentIndex, e)
-        setRows(newRow)
+        setUserData(prev => ({
+          ...prev,
+          rows: newRow,
+        }))
         return
       }
     }
@@ -41,7 +60,7 @@ export default function Home() {
     window.addEventListener('keydown', handleKeyDown)
 
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [currentIndex, result, rows])
+  }, [currentIndex, result, rows, setUserData])
 
   return (
     <main className={styles.main}>
