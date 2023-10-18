@@ -3,7 +3,7 @@ import type { Result } from '@/types'
 import styles from './board.module.css'
 
 const colorMap: Record<string, string> = {
-  Y: 'var(--main-light-green)',
+  Y: 'var(--main-light-yellow)',
   G: 'var(--main-green)',
   W: 'transparent',
 }

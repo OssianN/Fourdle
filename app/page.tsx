@@ -6,6 +6,7 @@ import { Result } from '@/types'
 import { addKey, checkResult } from '@/utils/BoardUtils'
 import styles from './home.module.css'
 import { useStateWithLocalStorage } from '@/utils/useStateWithLocalStorage'
+import { SettingsPane } from '@/components/SettingsPane'
 
 type UserData = {
   rows: Result[][]
@@ -15,7 +16,6 @@ export default function Home() {
   const {
     state: { rows },
     setState: setUserData,
-    resetLocalStorage,
   } = useStateWithLocalStorage<UserData>({
     key: 'userData',
     initialState: { rows: [[]] },
@@ -64,6 +64,8 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>Fourdle</h1>
+
+      <SettingsPane />
       <Board rows={rows} />
       <KeybaordContainer rows={rows.flat()} />
     </main>

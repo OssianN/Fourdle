@@ -1,0 +1,40 @@
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000bd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modalContentBox {
+  position: relative;
+  width: 95%;
+  height: 95%;
+  max-width: 600px;
+  max-height: 600px;
+  padding: 2rem;
+  background: var(--background-color);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.closeModalButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 678px) {
+  .modalContentBox {
+    padding: 4rem;
+  }
+}
