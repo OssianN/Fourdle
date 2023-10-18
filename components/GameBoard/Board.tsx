@@ -2,46 +2,41 @@ import { CSSProperties } from 'react'
 import type { Result } from '@/types'
 import styles from './board.module.css'
 
-const color: Record<string, string> = {
+const colorMap: Record<string, string> = {
   Y: 'var(--main-light-green)',
   G: 'var(--main-green)',
   W: 'transparent',
 }
 
-export const Board = ({
-  rows,
-  result,
-}: {
-  rows: string[][]
-  result: Result[][]
-}) => {
+export const Board = ({ rows }: { rows: Result[][] }) => {
   return (
     <div className={styles.boardContainer}>
       <div className={styles.board}>
         {Array.from({ length: 6 }).map((_, row) =>
           Array.from({ length: 4 }).map((_, box) => {
+            const boxColor = rows[row]?.[box]?.color
+            const boxLetter = rows[row]?.[box]?.letter
+
             return (
               <div
                 className={`${styles.letterBox} ${
-                  rows[row]?.[box] && styles.fadeAnimation
-                } ${result[row]?.[box] && styles.spinAnimation}`}
+                  boxLetter && styles.fadeAnimation
+                } ${boxColor && styles.spinAnimation}`}
                 key={`${row}${box}`}
                 style={
                   {
-                    '--box-background': color[result[row]?.[box].color],
-                    animationDelay: result[row]?.[box] && `${box * 0.2}s`,
+                    '--box-background': colorMap[boxColor],
+                    animationDelay: boxColor && `${box * 0.2}s`,
                   } as CSSProperties
                 }
               >
                 <p
-                  className={`${
-                    result[row]?.[box] ? styles.letterBoxText : ''
-                  }`}
+                  className={`${boxColor ? styles.letterBoxText : ''}`}
                   style={{
-                    animationDelay: result[row]?.[box] && `${box * 0.2}s`,
+                    animationDelay: boxColor && `${box * 0.2}s`,
                   }}
                 >
-                  {rows[row]?.[box]?.toUpperCase()}
+                  {boxLetter?.toUpperCase()}
                 </p>
               </div>
             )

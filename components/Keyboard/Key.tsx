@@ -5,7 +5,6 @@ const colorMap: Record<string, string> = {
   Y: 'var(--main-light-green)',
   G: 'var(--main-green)',
   W: 'grey',
-  B: 'var(--background-color)',
 }
 
 export const Key = ({ letter, color }: { letter: string; color: string }) => {
@@ -23,7 +22,7 @@ export const Key = ({ letter, color }: { letter: string; color: string }) => {
       onClick={handleClick}
       className={styles.key}
       style={{
-        background: colorMap[color],
+        background: colorMap[color] ?? 'var(--background-color)',
         width: letter === 'Enter' ? 'var(--big-key-size)' : 'var(--key-size)',
         flex: letter === 'Enter' ? 'unset' : '',
       }}

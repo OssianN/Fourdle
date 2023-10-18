@@ -8,17 +8,17 @@ import styles from './home.module.css'
 import { useStateWithLocalStorage } from '@/utils/useStateWithLocalStorage'
 
 type UserData = {
-  rows: string[][]
-  result: Result[][]
+  rows: Result[][]
 }
 
 export default function Home() {
   const {
-    state: { rows, result },
+    state: { rows },
     setState: setUserData,
+    resetLocalStorage,
   } = useStateWithLocalStorage<UserData>({
     key: 'userData',
-    initialState: { rows: [[]], result: [] },
+    initialState: { rows: [[]] },
   })
   const currentIndex = rows.length - 1
 
@@ -30,9 +30,10 @@ export default function Home() {
       if (e.key === 'Enter' && rows[currentIndex].length !== 4) return
 
       if (e.key === 'Enter') {
-        const newResultRow = await checkResult(rows, currentIndex)
+        const resultRow = await checkResult(rows, currentIndex)
+        rows[currentIndex] = resultRow
+
         setUserData({
-          result: [...result, newResultRow],
           rows: [...rows, []],
         })
         return
@@ -40,19 +41,17 @@ export default function Home() {
 
       if (e.key === 'Backspace') {
         rows[currentIndex].pop()
-        setUserData(prev => ({
-          ...prev,
+        setUserData({
           rows: [...rows],
-        }))
+        })
         return
       }
 
       if (rows[currentIndex].length < 4) {
         const newRow = addKey(rows, currentIndex, e)
-        setUserData(prev => ({
-          ...prev,
+        setUserData({
           rows: newRow,
-        }))
+        })
         return
       }
     }
@@ -60,13 +59,13 @@ export default function Home() {
     window.addEventListener('keydown', handleKeyDown)
 
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [currentIndex, result, rows, setUserData])
+  }, [currentIndex, rows, setUserData])
 
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>Fourdle</h1>
-      <Board rows={rows} result={result} />
-      <KeybaordContainer result={result.flat()} />
+      <Board rows={rows} />
+      <KeybaordContainer rows={rows.flat()} />
     </main>
   )
 }

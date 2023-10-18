@@ -6,8 +6,8 @@ export const keys: string[][] = [
   ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Backspace'],
 ]
 
-export const findColor = (result: Result[], key: string) =>
-  result
+export const findColor = (rows: Result[], key: string) =>
+  rows
     .filter(({ letter }) => letter === key)
     .sort((a, b) => colorHierarchy[a.color] - colorHierarchy[b.color])[0]
     ?.color ?? 'B'
