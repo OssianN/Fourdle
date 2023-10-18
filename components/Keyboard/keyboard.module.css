@@ -15,7 +15,7 @@
 
   position: relative;
   padding: 0.25rem;
-  border: 1px solid var(--main-light-green);
+  border: 1px solid var(--main-light-yellow);
   border-radius: 0.25rem;
   color: white;
   font-size: 1rem;
@@ -25,7 +25,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   transition: background-color 0.2s;
   transition-delay: 0.8s;
 }

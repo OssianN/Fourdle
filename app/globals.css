@@ -1,9 +1,9 @@
 :root {
   --max-width: 1100px;
-  --main-h1-size: 4rem;
   --main-green: #7a9d54;
-  --main-light-green: #f2ee9d;
+  --main-light-yellow: #f2ea78;
   --background-color: #1e1e1e;
+  --main-grey: #dde1c6;
   --box-shadow: 0 0px 5px 2px #7a9d54;
 }
 
@@ -23,4 +23,10 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }

@@ -2,9 +2,9 @@
 import styles from './keyboard.module.css'
 
 const colorMap: Record<string, string> = {
-  Y: 'var(--main-light-green)',
+  Y: 'var(--main-light-yellow)',
   G: 'var(--main-green)',
-  W: 'grey',
+  W: 'var(--main-grey)',
 }
 
 export const Key = ({ letter, color }: { letter: string; color: string }) => {

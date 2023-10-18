@@ -11,9 +11,8 @@
 .title {
   padding-top: 1rem;
   text-align: center;
-  font-size: var(--main-h1-size);
-  font-weight: 900;
-  color: var(--main-light-green);
+  font-weight: 700;
+  color: var(--main-light-yellow);
 }
 
 @media (min-width: 768px) {
