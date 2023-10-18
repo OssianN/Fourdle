@@ -26,7 +26,7 @@ export const SettingsPane = () => {
   return (
     <div className={styles.settingsPane}>
       <button onClick={handleInfoButtonClick} className={styles.infoButton}>
-        &#8505;
+        &#9432;
       </button>
 
       {openInfoModal && (
