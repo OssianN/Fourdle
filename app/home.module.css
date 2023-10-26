@@ -12,7 +12,7 @@
   padding-top: 1rem;
   text-align: center;
   font-weight: 700;
-  color: var(--main-light-yellow);
+  color: white;
 }
 
 @media (min-width: 768px) {

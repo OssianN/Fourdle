@@ -12,13 +12,15 @@ type UserData = {
   rows: Result[][]
 }
 
+const initialState = { rows: [[]] }
+
 export default function Home() {
   const {
     state: { rows },
     setState: setUserData,
   } = useStateWithLocalStorage<UserData>({
     key: 'userData',
-    initialState: { rows: [[]] },
+    initialState,
   })
   const currentIndex = rows.length - 1
 
@@ -48,9 +50,9 @@ export default function Home() {
       }
 
       if (rows[currentIndex].length < 4) {
-        const newRow = addKey(rows, currentIndex, e)
+        const updatedRows = addKey(rows, currentIndex, e)
         setUserData({
-          rows: newRow,
+          rows: updatedRows,
         })
         return
       }
@@ -59,6 +61,12 @@ export default function Home() {
     window.addEventListener('keydown', handleKeyDown)
 
     return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [currentIndex, rows, setUserData])
+
+  useEffect(() => {
+    if (rows[currentIndex - 1]?.every(item => item.color === 'G')) {
+      setUserData(initialState)
+    }
   }, [currentIndex, rows, setUserData])
 
   return (

@@ -2,7 +2,8 @@
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  border-bottom: 1px solid var(--main-light-yellow);
+  border-bottom: 1px solid var(--border-color);
+  max-width: 525px;
 }
 
 .infoButton {
@@ -35,5 +36,5 @@
   display: block;
   padding: 0.5rem;
   border-radius: 50%;
-  border: 1px solid var(--main-light-yellow);
+  border: 1px solid var(--border-color);
 }

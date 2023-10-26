@@ -20,6 +20,6 @@ export const addKey = (
 ) =>
   rows.map((row, i) =>
     i !== currentIndex
-      ? [...row]
+      ? row
       : [...row, { letter: e.key.toUpperCase(), color: '' }]
   )

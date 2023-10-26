@@ -15,7 +15,7 @@
 .letterBox {
   width: 4rem;
   height: 4rem;
-  border: 2px solid var(--main-light-yellow);
+  border: 2px solid var(--border-color);
   display: flex;
   justify-content: center;
   align-items: center;
