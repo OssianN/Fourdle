@@ -16,10 +16,8 @@ export const checkResult = async (
 export const addKey = (
   rows: Result[][],
   currentIndex: number,
-  e: KeyboardEvent
+  letter: string
 ) =>
   rows.map((row, i) =>
-    i !== currentIndex
-      ? row
-      : [...row, { letter: e.key.toUpperCase(), color: '' }]
+    i !== currentIndex ? row : [...row, { letter, color: '' }]
   )

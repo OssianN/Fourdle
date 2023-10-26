@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Board } from '@/components/GameBoard/Board'
 import KeybaordContainer from '@/components/Keyboard/KeyboardContainer'
 import { Result } from '@/types'
@@ -7,6 +7,7 @@ import { addKey, checkResult } from '@/utils/BoardUtils'
 import styles from './home.module.css'
 import { useStateWithLocalStorage } from '@/utils/useStateWithLocalStorage'
 import { SettingsPane } from '@/components/SettingsPane'
+import { Modal } from '@/components/Modal'
 
 type UserData = {
   rows: Result[][]
@@ -22,6 +23,8 @@ export default function Home() {
     key: 'userData',
     initialState,
   })
+  const [showFinishedGame, setShowFinishedGame] = useState<boolean>(false)
+  const [correctGuess, setCorrectGuess] = useState<boolean>(false)
   const currentIndex = rows.length - 1
 
   useEffect(() => {
@@ -50,7 +53,7 @@ export default function Home() {
       }
 
       if (rows[currentIndex].length < 4) {
-        const updatedRows = addKey(rows, currentIndex, e)
+        const updatedRows = addKey(rows, currentIndex, e.key.toUpperCase())
         setUserData({
           rows: updatedRows,
         })
@@ -65,7 +68,18 @@ export default function Home() {
 
   useEffect(() => {
     if (rows[currentIndex - 1]?.every(item => item.color === 'G')) {
-      setUserData(initialState)
+      setCorrectGuess(true)
+      setTimeout(() => {
+        setShowFinishedGame(true)
+      }, 1500)
+      return
+    }
+
+    if (rows.length === 7) {
+      setTimeout(() => {
+        setShowFinishedGame(true)
+      }, 1500)
+      return
     }
   }, [currentIndex, rows, setUserData])
 
@@ -76,6 +90,25 @@ export default function Home() {
       <SettingsPane />
       <Board rows={rows} />
       <KeybaordContainer rows={rows.flat()} />
+      {showFinishedGame && (
+        <Modal closeModal={() => setShowFinishedGame(false)}>
+          <div className={styles.resultsModal}>
+            {correctGuess ? <h2>Correct!</h2> : <h2>You suuuck!</h2>}
+            {correctGuess ? (
+              <p>Come back tomorrow to guess the new word.</p>
+            ) : (
+              <p>
+                You had six guesses, with clues and everything, and still did
+                not get it right!
+              </p>
+            )}
+            <p>
+              You guessed:{' '}
+              {rows[currentIndex - 1].map(({ letter }) => letter).join('')}
+            </p>
+          </div>
+        </Modal>
+      )}
     </main>
   )
 }
